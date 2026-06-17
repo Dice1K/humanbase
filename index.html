@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ヒューマン・ベース株式会社</title>
+<style>
+  :root {
+    --blue: #1a6ea8;
+    --blue-dark: #0d4a73;
+    --blue-light: #e8f3fa;
+    --navy: #0d2d45;
+    --white: #ffffff;
+    --gray-light: #f5f8fb;
+    --gray-text: #4a5568;
+    --border: #cce0f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Yu Gothic', 'Meiryo', sans-serif;
+    color: var(--navy);
+    line-height: 1.7;
+    background: var(--white);
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 2px solid var(--blue);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--blue-dark);
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+  .logo span { color: var(--blue); }
+
+  nav { display: flex; gap: 32px; align-items: center; }
+  nav a {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  nav a:hover { color: var(--blue); border-bottom-color: var(--blue); }
+  nav .cta-btn {
+    background: var(--blue);
+    color: var(--white);
+    padding: 8px 20px;
+    border-radius: 3px;
+    border-bottom: none;
+    font-size: 13px;
+  }
+  nav .cta-btn:hover { background: var(--blue-dark); color: var(--white); }
+
+  /* ── HERO ── */
+  .hero {
+    margin-top: 64px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue-dark) 55%, var(--blue) 100%);
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    padding: 80px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -60px; top: -80px;
+    width: 520px; height: 520px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: 120px; bottom: -120px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .hero-content { max-width: 680px; position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 4px 12px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: #7ec8f5;
+  }
+  .hero p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+    max-width: 560px;
+    margin-bottom: 36px;
+    line-height: 1.9;
+  }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--white);
+    color: var(--blue-dark);
+    padding: 13px 32px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #e0effa; }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.6);
+    color: var(--white);
+    padding: 13px 32px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.08); }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 80px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+  }
+  .section-lead {
+    font-size: 15px;
+    color: var(--gray-text);
+    max-width: 640px;
+    margin-bottom: 48px;
+    line-height: 1.9;
+  }
+  .divider {
+    width: 40px; height: 3px;
+    background: var(--blue);
+    margin-bottom: 20px;
+  }
+
+  /* ── PHILOSOPHY ── */
+  #philosophy { background: var(--gray-light); }
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 8px;
+  }
+  .philosophy-card {
+    background: var(--white);
+    border-left: 4px solid var(--blue);
+    padding: 28px 32px;
+  }
+  .philosophy-card p {
+    font-size: 14.5px;
+    color: var(--navy);
+    line-height: 1.9;
+  }
+  .philosophy-lead {
+    grid-column: 1 / -1;
+    background: var(--blue-dark);
+    color: var(--white);
+    padding: 32px 40px;
+    border-left: none;
+  }
+  .philosophy-lead p {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── NEWS ── */
+  .news-list { display: flex; flex-direction: column; gap: 0; }
+  .news-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .news-item:first-child { border-top: 1px solid var(--border); }
+  .news-date {
+    font-size: 13px;
+    color: var(--blue);
+    font-weight: 600;
+    white-space: nowrap;
+    min-width: 120px;
+    padding-top: 2px;
+  }
+  .news-text { font-size: 14.5px; color: var(--navy); line-height: 1.7; }
+
+  /* ── BUSINESS ── */
+  #business { background: var(--white); }
+  .business-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .biz-card {
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .biz-header {
+    background: var(--blue);
+    padding: 24px 32px;
+  }
+  .biz-header.dark { background: var(--blue-dark); }
+  .biz-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 6px;
+  }
+  .biz-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .biz-body { padding: 28px 32px; }
+  .biz-body p { font-size: 14px; color: var(--gray-text); line-height: 1.9; margin-bottom: 16px; }
+  .biz-items { list-style: none; }
+  .biz-items li {
+    font-size: 14px;
+    color: var(--navy);
+    padding: 8px 0 8px 16px;
+    border-bottom: 1px solid var(--gray-light);
+    position: relative;
+  }
+  .biz-items li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+
+  /* ── FACILITIES ── */
+  #facilities { background: var(--gray-light); }
+  .facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .facility-card {
+    background: var(--white);
+    padding: 28px 32px;
+    border-top: 3px solid var(--blue);
+  }
+  .facility-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .facility-meta {
+    font-size: 13px;
+    color: var(--gray-text);
+    line-height: 1.9;
+  }
+  .facility-meta span { color: var(--blue); font-weight: 600; }
+  .facility-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .facility-link:hover { text-decoration: underline; }
+
+  /* ── PROPERTY ── */
+  #property { background: var(--navy); }
+  #property .section-label { color: #7ec8f5; }
+  #property .section-title { color: var(--white); }
+  #property .section-lead { color: rgba(255,255,255,0.75); }
+  .property-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .property-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 32px;
+  }
+  .property-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .property-card-title::before {
+    content: '';
+    display: block;
+    width: 18px; height: 2px;
+    background: #7ec8f5;
+    flex-shrink: 0;
+  }
+  .property-card p, .property-card li {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.9;
+  }
+  .property-card ul { list-style: none; }
+  .property-card ul li {
+    padding: 6px 0 6px 16px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .property-card ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: #7ec8f5;
+    font-weight: 700;
+  }
+  .property-note {
+    margin-top: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+  .property-cta {
+    margin-top: 48px;
+    text-align: center;
+  }
+  .btn-blue {
+    display: inline-block;
+    background: var(--blue);
+    color: var(--white);
+    padding: 15px 48px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    transition: background 0.2s;
+  }
+  .btn-blue:hover { background: #1a85cc; }
+
+  /* ── CEO ── */
+  #ceo { background: var(--white); }
+  .ceo-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .ceo-avatar {
+    width: 180px; height: 200px;
+    background: var(--blue-light);
+    border: 3px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ceo-avatar svg { width: 48px; height: 48px; opacity: 0.4; }
+  .ceo-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .ceo-title {
+    font-size: 13px;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+  }
+  .ceo-career { display: flex; flex-direction: column; gap: 0; }
+  .career-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .career-item:first-child { border-top: 1px solid var(--border); }
+  .career-year {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue);
+    padding-top: 2px;
+  }
+  .career-desc {
+    font-size: 14px;
+    color: var(--navy);
+    line-height: 1.8;
+  }
+
+  /* ── COMPANY ── */
+  #company { background: var(--gray-light); }
+  .company-table { width: 100%; border-collapse: collapse; }
+  .company-table tr { border-bottom: 1px solid var(--border); }
+  .company-table th {
+    width: 180px;
+    padding: 16px 24px 16px 0;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue-dark);
+    vertical-align: top;
+    white-space: nowrap;
+  }
+  .company-table td {
+    padding: 16px 0;
+    font-size: 14px;
+    color: var(--navy);
+    line-height: 1.8;
+  }
+
+  /* ── RECRUITMENT ── */
+  #recruitment { background: var(--blue); }
+  #recruitment .section-label { color: rgba(255,255,255,0.65); }
+  #recruitment .section-title { color: var(--white); }
+  #recruitment .section-lead { color: rgba(255,255,255,0.85); }
+  .recruit-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .recruit-card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 28px 28px;
+  }
+  .recruit-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    color: white;
+    font-size: 20px;
+  }
+  .recruit-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .recruit-card p {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.9;
+  }
+  .recruit-cta {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .btn-white {
+    display: inline-block;
+    background: var(--white);
+    color: var(--blue-dark);
+    padding: 13px 36px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .btn-white:hover { background: #e0effa; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); padding: 64px 80px; }
+  #contact .section-inner { display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+  .contact-text .section-label { color: #7ec8f5; }
+  .contact-text .section-title { color: var(--white); margin-bottom: 8px; }
+  .contact-text p { font-size: 14px; color: rgba(255,255,255,0.7); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #071a2a;
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+  .footer-logo {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    header { padding: 0 24px; }
+    nav { gap: 16px; }
+    section { padding: 60px 24px; }
+    .hero { padding: 60px 24px; }
+    .hero h1 { font-size: 28px; }
+    .philosophy-grid,
+    .business-grid,
+    .facilities-grid,
+    .property-grid,
+    .ceo-layout,
+    .recruit-cards { grid-template-columns: 1fr; }
+    .philosophy-lead { grid-column: 1; }
+    #contact .section-inner { flex-direction: column; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">Human<span>Base</span>　ヒューマン・ベース株式会社</a>
+  <nav>
+    <a href="#philosophy">企業理念</a>
+    <a href="#business">事業内容</a>
+    <a href="#property">物件募集</a>
+    <a href="#ceo">代表者</a>
+    <a href="#company">会社概要</a>
+    <a href="#recruitment">採用情報</a>
+    <a href="#contact" class="cta-btn">お問い合わせ</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Human Base Co., Ltd.</div>
+    <h1>人が、すべての<br>企業活動の<em>基礎</em>である。</h1>
+    <p>ヒューマン・ベース株式会社は、観光事業・宿泊施設運営を中心に、独自の視点と経営ノウハウで高い付加価値を創出します。ベンチャーキャピタル・コンサルティング・経営実務で培った知見を、事業開発・パートナーシップに活かします。</p>
+    <div class="hero-buttons">
+      <a href="#business" class="btn-primary">事業内容を見る</a>
+      <a href="#property" class="btn-outline">物件提供のご相談</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news" style="background:var(--white); padding:56px 80px;">
+  <div class="section-inner">
+    <div class="section-label">News</div>
+    <div class="divider"></div>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-date">2025年10月1日</div>
+        <div class="news-text">宿泊施設「アーバンリゾート蒲田」「アーバンステイ南蒲田」が東京都大田区蒲田に同時オープン</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2025年1月1日</div>
+        <div class="news-text">7番目の宿泊施設となる「むじゅらい徳之島」が鹿児島県徳之島にオープン</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2024年12月1日</div>
+        <div class="news-text">6番目の宿泊施設となる「里山HANARE」が広島県安芸高田市にオープン</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="section-inner">
+    <div class="section-label">Philosophy</div>
+    <div class="section-title">企業理念</div>
+    <div class="divider"></div>
+    <div class="philosophy-grid">
+      <div class="philosophy-card philosophy-lead">
+        <p>人が、全ての企業活動の基礎である。</p>
+      </div>
+      <div class="philosophy-card">
+        <p>人がその情熱と創造力を注ぎ込むに値する事業や場を、共に作り上げていく。</p>
+      </div>
+      <div class="philosophy-card">
+        <p>倫理観と収益意識を持って企業活動に取り組む。</p>
+      </div>
+      <div class="philosophy-card">
+        <p>人・物・金・情報の各事業分野で独自性を発揮し、高い付加価値を提供していく。</p>
+      </div>
+      <div class="philosophy-card">
+        <p>企業活動を通じて社会の発展と繁栄の一助となり、自らを向上させて行く。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS -->
+<section id="business">
+  <div class="section-inner">
+    <div class="section-label">Business</div>
+    <div class="section-title">事業内容</div>
+    <div class="divider"></div>
+    <p class="section-lead">観光事業と宿泊施設運営の2軸で、独自のノウハウを蓄積・展開しています。</p>
+    <div class="business-grid">
+      <div class="biz-card">
+        <div class="biz-header">
+          <div class="biz-number">01 — Tourism</div>
+          <div class="biz-title">観光事業</div>
+        </div>
+        <div class="biz-body">
+          <p>観光関連の情報発信・コンサルティングを展開。地域の魅力と旅行者をつなぐプラットフォームを構築します。</p>
+          <ul class="biz-items">
+            <li>観光情報サイトの企画・運営（近日ローンチ予定）</li>
+            <li>観光・宿泊に関するコンサルティング</li>
+            <li>地域活性化に向けた事業開発支援</li>
+          </ul>
+        </div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-header dark">
+          <div class="biz-number">02 — Accommodation</div>
+          <div class="biz-title">宿泊施設運営</div>
+        </div>
+        <div class="biz-body">
+          <p>既存物件をリノベーションし、特色ある宿泊施設として運営。都市型・地方型を問わず、多様な物件タイプに対応しています。</p>
+          <ul class="biz-items">
+            <li>賃貸マンション・アパートの転用・運営</li>
+            <li>戸建て・小規模ビルのリノベーション</li>
+            <li>複数路線沿線エリアへの展開実績</li>
+            <li>2014年より運営開始、継続的に施設拡大中</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section id="facilities">
+  <div class="section-inner">
+    <div class="section-label">Facilities</div>
+    <div class="section-title">運営施設</div>
+    <div class="divider"></div>
+    <p class="section-lead">東京都心部を中心に、個性ある宿泊施設を運営しています。</p>
+    <div class="facilities-grid">
+      <div class="facility-card">
+        <div class="facility-name">両国庵</div>
+        <div class="facility-meta">
+          <span>住所</span>　墨田区緑1-16-8<br>
+          <span>概要</span>　賃貸マンションからの転用<br>
+          <span>開業</span>　2020年9月
+        </div>
+        <a href="https://www.jalan.net/yad327053/" target="_blank" class="facility-link">じゃらんで確認 ›</a>
+      </div>
+      <div class="facility-card">
+        <div class="facility-name">アーバンステイ押上</div>
+        <div class="facility-meta">
+          <span>住所</span>　墨田区文花1-10-1<br>
+          <span>概要</span>　小規模ビルのリノベーション<br>
+          <span>開業</span>　2020年12月
+        </div>
+        <a href="https://www.jalan.net/yad331063/" target="_blank" class="facility-link">じゃらんで確認 ›</a>
+      </div>
+      <div class="facility-card">
+        <div class="facility-name">アーバンステイ品川</div>
+        <div class="facility-meta">
+          <span>住所</span>　品川区北品川2-23-14<br>
+          <span>概要</span>　戸建ての一棟貸（定期借家）<br>
+          <span>開業</span>　2020年11月
+        </div>
+        <a href="https://www.jalan.net/yad385002/" target="_blank" class="facility-link">じゃらんで確認 ›</a>
+      </div>
+      <div class="facility-card">
+        <div class="facility-name">アーバンステイ青砥</div>
+        <div class="facility-meta">
+          <span>住所</span>　葛飾区立石6-29-12<br>
+          <span>概要</span>　日本家屋のリノベーション<br>
+          <span>開業</span>　2020年12月
+        </div>
+      </div>
+      <div class="facility-card">
+        <div class="facility-name">むじゅらい徳之島</div>
+        <div class="facility-meta">
+          <span>住所</span>　鹿児島県徳之島<br>
+          <span>概要</span>　7番目の運営施設<br>
+          <span>開業</span>　2025年1月
+        </div>
+      </div>
+      <div class="facility-card">
+        <div class="facility-name">里山HANARE</div>
+        <div class="facility-meta">
+          <span>住所</span>　広島県安芸高田市<br>
+          <span>概要</span>　里山型宿泊施設<br>
+          <span>開業</span>　2024年12月
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPERTY RECRUITMENT -->
+<section id="property">
+  <div class="section-inner">
+    <div class="section-label">Property</div>
+    <div class="section-title">物件オーナーの皆様へ</div>
+    <div class="divider" style="background:#7ec8f5;"></div>
+    <p class="section-lead">弊社では宿泊施設運営のための物件を随時募集しています。購入・賃貸いずれも対応可能です。空き室の多い物件・古い物件も積極的にご相談ください。</p>
+    <div class="property-grid">
+      <div class="property-card">
+        <div class="property-card-title">マンション・アパート</div>
+        <ul>
+          <li>1棟または1フロア単位での賃貸・購入</li>
+          <li>延床面積200㎡以下（低層階が好ましい）</li>
+          <li>築古（30年以上）・ユニットバス・狭小（15〜20㎡）・1階も大歓迎</li>
+          <li>現状で空室が多数ある物件を優先的に検討</li>
+        </ul>
+      </div>
+      <div class="property-card">
+        <div class="property-card-title">戸建て住宅</div>
+        <ul>
+          <li>延床面積30〜200㎡</li>
+          <li>一棟貸し・丸ごとリノベーション対応</li>
+          <li>用途地域：住居専用地域以外</li>
+          <li>接道幅4m以上</li>
+        </ul>
+      </div>
+      <div class="property-card">
+        <div class="property-card-title">希望エリア</div>
+        <ul>
+          <li>山手線（沿線・内側）</li>
+          <li>都営浅草線（羽田空港〜京成高砂）</li>
+          <li>総武線（吉祥寺〜新小岩）</li>
+          <li>ディズニーリゾート周辺</li>
+        </ul>
+      </div>
+      <div class="property-card">
+        <div class="property-card-title">賃貸物件オーナーへの条件</div>
+        <p>賃貸の場合、<strong style="color:#7ec8f5;">周辺相場の30〜50%増</strong>の賃料をお支払いします。空室リスクの解消と安定収入の確保にご活用ください。</p>
+        <p class="property-note">※購入物件も積極的に検討します。</p>
+      </div>
+    </div>
+    <div class="property-cta">
+      <a href="#contact" class="btn-blue">物件のご相談・お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<!-- CEO -->
+<section id="ceo">
+  <div class="section-inner">
+    <div class="section-label">Leadership</div>
+    <div class="section-title">代表者プロフィール</div>
+    <div class="divider"></div>
+    <div class="ceo-layout">
+      <div>
+        <div class="ceo-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          代表取締役社長<br>小島 圭介
+        </div>
+      </div>
+      <div>
+        <div class="ceo-name">小島 圭介</div>
+        <div class="ceo-title">代表取締役社長　／　広島市出身・一橋大学卒</div>
+        <div class="ceo-career">
+          <div class="career-item">
+            <div class="career-year">1991年</div>
+            <div class="career-desc">一橋大学卒業後、日本アジア投資株式会社（ベンチャーキャピタル）入社。国内外企業への投資業務に従事。20代で広島支店長に就任。</div>
+          </div>
+          <div class="career-item">
+            <div class="career-year">2000年</div>
+            <div class="career-desc">株式会社ドリームインキュベータ（戦略系コンサルティング）マーケティングマネジャー就任。</div>
+          </div>
+          <div class="career-item">
+            <div class="career-year">2002年</div>
+            <div class="career-desc">株式会社商業藝術（外食企業）代表取締役社長就任。戦略・人事・財務・店舗開発・新規事業を統括。在任中に年商1,700百万円→4,500百万円、経常利益30百万円→230百万円へ成長。</div>
+          </div>
+          <div class="career-item">
+            <div class="career-year">2006年</div>
+            <div class="career-desc">ヒューマン・ベース株式会社を創業。2014年より宿泊施設運営を開始。</div>
+          </div>
+          <div class="career-item">
+            <div class="career-year">社外活動</div>
+            <div class="career-desc">東証プライム上場企業のコーポレートベンチャーキャピタル事業を受託運営。（株）TOKYO BASE（東証プライム）、（株）ハッチ・ワーク（東証グロース）の社外取締役を歴任。著書（共同執筆）に「チャイナマネーを追え！」。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY INFO -->
+<section id="company">
+  <div class="section-inner">
+    <div class="section-label">Company</div>
+    <div class="section-title">会社概要</div>
+    <div class="divider"></div>
+    <table class="company-table">
+      <tr><th>会社名</th><td>ヒューマン・ベース株式会社</td></tr>
+      <tr><th>事業内容</th><td>観光事業、宿泊施設運営</td></tr>
+      <tr><th>代表者</th><td>代表取締役社長　小島圭介</td></tr>
+      <tr><th>所在地</th><td>東京都渋谷区松涛1-7-8 マストライフ2階</td></tr>
+      <tr><th>設立日</th><td>2006年10月3日</td></tr>
+      <tr><th>資本金</th><td>20,000,000円</td></tr>
+      <tr><th>連絡先</th><td>TEL：03-6905-6825</td></tr>
+      <tr><th>取引銀行</th><td>みずほ銀行（渋谷中央支店）</td></tr>
+      <tr><th>URL</th><td><a href="http://www.humanbase.jp/" style="color:var(--blue);">http://www.humanbase.jp/</a></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- RECRUITMENT -->
+<section id="recruitment">
+  <div class="section-inner">
+    <div class="section-label">Recruitment</div>
+    <div class="section-title">採用情報</div>
+    <div class="divider" style="background:rgba(255,255,255,0.5);"></div>
+    <p class="section-lead">事業拡大に伴い、共に成長できる人材を募集しています。経営への主体的な関与と、高い倫理観・収益意識をお持ちの方を歓迎します。</p>
+    <div class="recruit-cards">
+      <div class="recruit-card">
+        <div class="recruit-icon">🏨</div>
+        <div class="recruit-card-title">宿泊施設の運営・管理</div>
+        <p>施設の日常運営、ゲスト対応、品質管理を担当。運営ノウハウを身につけながら、事業拡大に貢献できるポジションです。</p>
+      </div>
+      <div class="recruit-card">
+        <div class="recruit-icon">🏗️</div>
+        <div class="recruit-card-title">物件開発・事業開発</div>
+        <p>新規物件の開拓・交渉・開業準備を担当。投資・コンサルティング知見を活かせる、経営に近いポジションです。</p>
+      </div>
+      <div class="recruit-card">
+        <div class="recruit-icon">📊</div>
+        <div class="recruit-card-title">経営企画・バックオフィス</div>
+        <p>財務・経理・総務・マーケティングなど。少数精鋭の環境で、幅広い経営実務を経験できます。</p>
+      </div>
+    </div>
+    <div class="recruit-cta">
+      <a href="#contact" class="btn-white">採用に関するお問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-text">
+      <div class="section-label">Contact</div>
+      <div class="section-title">お問い合わせ</div>
+      <p>物件のご相談、事業提携、採用に関するお問い合わせはこちらからお気軽にどうぞ。</p>
+    </div>
+    <div>
+      <a href="mailto:info@humanbase.jp" class="btn-blue" style="font-size:15px; padding:15px 40px;">メールでお問い合わせ</a>
+      <p style="margin-top:12px; font-size:13px; color:rgba(255,255,255,0.5); text-align:center;">TEL：03-6905-6825</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">ヒューマン・ベース株式会社</a>
+  <p>© 2006 Human Base Co., Ltd. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
